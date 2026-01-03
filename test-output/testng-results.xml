@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-01-03T17:38:31 IST" name="Default suite" finished-at="2026-01-03T17:38:45 IST" duration-ms="13489">
+    <groups>
+    </groups>
+    <test started-at="2026-01-03T17:38:31 IST" name="Default test" finished-at="2026-01-03T17:38:45 IST" duration-ms="13489">
+      <class name="org.zasyasolutions.portfolio.login.Login">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:org.zasyasolutions.portfolio.login.Login@4562e04d]" started-at="2026-01-03T17:38:31 IST" name="setUp" finished-at="2026-01-03T17:38:36 IST" duration-ms="4757" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initializePageObjects()[pri:0, instance:org.zasyasolutions.portfolio.login.Login@4562e04d]" started-at="2026-01-03T17:38:36 IST" name="initializePageObjects" finished-at="2026-01-03T17:38:36 IST" duration-ms="29" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initializePageObjects -->
+        <test-method signature="loginPage()[pri:0, instance:org.zasyasolutions.portfolio.login.Login@4562e04d]" started-at="2026-01-03T17:38:36 IST" name="loginPage" finished-at="2026-01-03T17:38:45 IST" duration-ms="8466" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginPage -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:org.zasyasolutions.portfolio.login.Login@4562e04d]" started-at="2026-01-03T17:38:45 IST" name="tearDown" finished-at="2026-01-03T17:38:45 IST" duration-ms="124" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- org.zasyasolutions.portfolio.login.Login -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
