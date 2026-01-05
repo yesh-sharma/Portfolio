@@ -30,6 +30,9 @@ public class Login extends BaseTest {
 
     @FindBy(xpath="//div[@class='ant-message-notice-content']")
     WebElement loginMessageToaster;
+    
+    @FindBy(xpath="//a[@href='/login']")
+    WebElement signInButton;
 
     @BeforeMethod
     public void initializePageObjects() {
@@ -48,7 +51,10 @@ public class Login extends BaseTest {
         goTo.Goto();
 
         System.out.println("===User Logging in===");
-
+        
+        
+        reusable.waitForClickable(signInButton).click();
+        Thread.sleep(1000);
         reusable.waitForVisible(usernameField).sendKeys(email);
         reusable.waitForVisible(passwordField).sendKeys(password);
         
@@ -58,6 +64,6 @@ public class Login extends BaseTest {
         Assert.assertEquals(message, "User successfully logged in!");
         reusable.clickAlertOk();
         Thread.sleep(1000);
-        System.out.println("===User on Dashboard===");
+        System.out.println("===User Logged in Successfully===");
     }
 }
