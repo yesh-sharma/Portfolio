@@ -8,62 +8,49 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.zasyasolutions.portfolio.baseTestPackage.BaseTest;
 import org.zasyasolutions.portfolio.baseTestPackage.GotoPage;
+import org.zasyasolutions.portfolio.pageObjectModel.LoginPage;
 import org.zasyasolutions.portfolio.utils.ConfigReader;
 import org.zasyasolutions.portfolio.utils.RetryAnalyzer;
 import org.zasyasolutions.portfolio.utils.ReusableCode;
 
 public class Login extends BaseTest {
 
-    GotoPage goTo;
-    ReusableCode reusable;
-    String email;
-    String password;
+    private LoginPage loginPage;
 
-    @FindBy(id="email")
-    WebElement usernameField;
-
-    @FindBy(id="password")
-    WebElement passwordField;
-
-    @FindBy(xpath="//span[normalize-space()='Sign in']")
-    WebElement loginButton;
-
-    @FindBy(xpath="//div[@class='ant-message-notice-content']")
-    WebElement loginMessageToaster;
-    
-    @FindBy(xpath="//a[@href='/login']")
-    WebElement signInButton;
-
-    @BeforeMethod
+    @BeforeMethod(dependsOnMethods = "setUp")
     public void initializePageObjects() {
-        // Initialize PageFactory and helper classes
-        PageFactory.initElements(driver, this);
-        goTo = new GotoPage(driver);
-        reusable = new ReusableCode(driver);
-        
-        // Get credentials
-        email = ConfigReader.getProperty("login.email2");
-        password = ConfigReader.getProperty("login.password2");
+    			System.out.println("=== Initializing Page Objects for Login Test ===");
+
+		// Verify driver is not null
+		if (driver == null) {
+			throw new IllegalStateException("WebDriver is null! BaseTest.setUp() did not run properly.");
+		}
+
+		// Initialize LoginPage helper
+		loginPage = new LoginPage();
+		loginPage.driver = this.driver; // Share the same driver instance
+		PageFactory.initElements(driver, loginPage);
+		loginPage.initializeLoginHelper();
+
+		System.out.println("✓ Page Objects Initialized Successfully for Login Test");
     }
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
     public void loginPage() throws InterruptedException {
-        goTo.Goto();
-
-        System.out.println("===User Logging in===");
         
-        
-        reusable.waitForClickable(signInButton).click();
-        Thread.sleep(1000);
-        reusable.waitForVisible(usernameField).sendKeys(email);
-        reusable.waitForVisible(passwordField).sendKeys(password);
-        
-        reusable.waitForClickable(loginButton).click();
-        String message = reusable.waitForVisible(loginMessageToaster).getText();
-        Thread.sleep(2000); // Wait for dashboard to load
-        Assert.assertEquals(message, "User successfully logged in!");
-        reusable.clickAlertOk();
-        Thread.sleep(1000);
-        System.out.println("===User Logged in Successfully===");
+    	loginPage.performLogin();
     }
+    
+    @Test(retryAnalyzer = RetryAnalyzer.class)
+    public void invalidLogin() throws InterruptedException {
+    	loginPage.invalidLogin();
+    }
+    
+    
+    @ Test(retryAnalyzer = RetryAnalyzer.class)
+    public void logOut() throws InterruptedException {
+		
+		loginPage.performLogout();
+		
+	}
 }

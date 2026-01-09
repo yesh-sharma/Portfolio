@@ -2,28 +2,28 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-01-05T10:49:53 IST" name="Default suite" finished-at="2026-01-05T10:50:08 IST" duration-ms="14075">
+  <suite started-at="2026-01-07T15:35:37 IST" name="Default suite" finished-at="2026-01-07T15:35:56 IST" duration-ms="18102">
     <groups>
     </groups>
-    <test started-at="2026-01-05T10:49:53 IST" name="Default test" finished-at="2026-01-05T10:50:08 IST" duration-ms="14075">
-      <class name="org.zasyasolutions.portfolio.login.Login">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:org.zasyasolutions.portfolio.login.Login@4562e04d]" started-at="2026-01-05T10:49:54 IST" name="setUp" finished-at="2026-01-05T10:49:58 IST" duration-ms="4834" status="PASS">
+    <test started-at="2026-01-07T15:35:37 IST" name="Default test" finished-at="2026-01-07T15:35:56 IST" duration-ms="18102">
+      <class name="org.zasyasolutions.portfolio.profileModule.AddProject">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:org.zasyasolutions.portfolio.profileModule.AddProject@4c371370]" started-at="2026-01-07T15:35:37 IST" name="setUp" finished-at="2026-01-07T15:35:45 IST" duration-ms="7779" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method is-config="true" signature="initializePageObjects()[pri:0, instance:org.zasyasolutions.portfolio.login.Login@4562e04d]" started-at="2026-01-05T10:49:58 IST" name="initializePageObjects" finished-at="2026-01-05T10:49:58 IST" duration-ms="41" status="PASS">
+        <test-method is-config="true" signature="initializePageObjects()[pri:0, instance:org.zasyasolutions.portfolio.profileModule.AddProject@4c371370]" started-at="2026-01-07T15:35:45 IST" name="initializePageObjects" finished-at="2026-01-07T15:35:45 IST" depends-on-methods="org.zasyasolutions.portfolio.baseTestPackage.BaseTest.setUp" duration-ms="34" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initializePageObjects -->
-        <test-method signature="loginPage()[pri:0, instance:org.zasyasolutions.portfolio.login.Login@4562e04d]" started-at="2026-01-05T10:49:58 IST" name="loginPage" finished-at="2026-01-05T10:50:07 IST" duration-ms="8977" status="PASS">
+        <test-method signature="verifyProfileSettingsToggle()[pri:0, instance:org.zasyasolutions.portfolio.profileModule.AddProject@4c371370]" started-at="2026-01-07T15:35:45 IST" name="verifyProfileSettingsToggle" description="Verify profile settings toggle and save functionality" finished-at="2026-01-07T15:35:55 IST" duration-ms="10081" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- loginPage -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:org.zasyasolutions.portfolio.login.Login@4562e04d]" started-at="2026-01-05T10:50:07 IST" name="tearDown" finished-at="2026-01-05T10:50:08 IST" duration-ms="122" status="PASS">
+        </test-method> <!-- verifyProfileSettingsToggle -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:org.zasyasolutions.portfolio.profileModule.AddProject@4c371370]" started-at="2026-01-07T15:35:55 IST" name="tearDown" finished-at="2026-01-07T15:35:56 IST" duration-ms="110" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- org.zasyasolutions.portfolio.login.Login -->
+      </class> <!-- org.zasyasolutions.portfolio.profileModule.AddProject -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

@@ -18,6 +18,7 @@ public class BaseTest {
     public WebDriver driver;
     public static WebDriverWait wait;
     public JavascriptExecutor js;
+    public GotoPage goTo;
 
     @BeforeMethod
     public void setUp() throws Exception {
@@ -51,6 +52,8 @@ public class BaseTest {
             wait = new WebDriverWait(driver, Duration.ofSeconds(30));
             js = (JavascriptExecutor) driver;
             System.out.println("✓ Driver initialized successfully");
+            goTo = new GotoPage(driver);
+            goTo.Goto();
         } catch (Exception e) {
             System.err.println("✗ Failed to initialize driver: " + e.getMessage());
             e.printStackTrace();
