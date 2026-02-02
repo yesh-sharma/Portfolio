@@ -1,24 +1,16 @@
 package org.zasyasolutions.portfolio.profileModule;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.zasyasolutions.portfolio.baseTestPackage.BaseTest;
-import org.zasyasolutions.portfolio.baseTestPackage.GotoPage;
-import org.zasyasolutions.portfolio.login.Login;
 import org.zasyasolutions.portfolio.pageObjectModel.LoginPage;
 import org.zasyasolutions.portfolio.pageObjectModel.ProfilePage;
-import org.zasyasolutions.portfolio.utils.ConfigReader;
 import org.zasyasolutions.portfolio.utils.RetryAnalyzer;
 import org.zasyasolutions.portfolio.utils.ReusableCode;
 
-public class AddProject extends BaseTest {
-    
+public class AddTestimonial extends BaseTest {
+
 	  private LoginPage loginPage;
 	  private ProfilePage profilePage;
 	  private ReusableCode reusable;
@@ -57,7 +49,7 @@ public class AddProject extends BaseTest {
         
         profilePage.navigateToProfile();
         
-        profilePage.addProject();
+        profilePage.addTestimonial();
         profilePage.clickSaveButton();
     }
 }

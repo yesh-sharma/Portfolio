@@ -3,14 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="org.zasyasolutions.portfolio.profileModule.AddProject">
+      <class name="org.zasyasolutions.portfolio.profileModule.SocialLinks">
         <methods>
-          <include name="verifyProfileSettingsToggle"/>
+          <include name="addSocialLinksLink"/>
+          <include name="initialize"/>
           <include name="tearDown"/>
-          <include name="initializePageObjects"/>
           <include name="setUp"/>
         </methods>
-      </class> <!-- org.zasyasolutions.portfolio.profileModule.AddProject -->
+      </class> <!-- org.zasyasolutions.portfolio.profileModule.SocialLinks -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

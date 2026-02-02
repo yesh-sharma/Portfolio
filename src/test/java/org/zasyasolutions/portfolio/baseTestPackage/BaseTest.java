@@ -49,7 +49,7 @@ public class BaseTest {
             driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
             
             // Initialize WebDriverWait
-            wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+            wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             js = (JavascriptExecutor) driver;
             System.out.println("✓ Driver initialized successfully");
             goTo = new GotoPage(driver);
@@ -61,6 +61,12 @@ public class BaseTest {
         }
         System.out.println("=== SETUP COMPLETED ===");
     }
+    
+    protected void outputConsole(Object Value) {
+		// TODO Auto-generated method stub
+    	System.out.println(Value);
+		
+	}
 
     @AfterMethod
     public void tearDown() {

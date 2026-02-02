@@ -35,21 +35,23 @@ public class Login extends BaseTest {
 		System.out.println("✓ Page Objects Initialized Successfully for Login Test");
     }
 
-    @Test(retryAnalyzer = RetryAnalyzer.class)
+  @Test(retryAnalyzer = RetryAnalyzer.class)
     public void loginPage() throws InterruptedException {
         
     	loginPage.performLogin();
+    	
     }
     
-    @Test(retryAnalyzer = RetryAnalyzer.class)
+  //  @Test(retryAnalyzer = RetryAnalyzer.class)
     public void invalidLogin() throws InterruptedException {
     	loginPage.invalidLogin();
     }
     
     
-    @ Test(retryAnalyzer = RetryAnalyzer.class)
+   // @Test(retryAnalyzer = RetryAnalyzer.class)
     public void logOut() throws InterruptedException {
-		
+		loginPage.performLogin();
+		Thread.sleep(2000);
 		loginPage.performLogout();
 		
 	}

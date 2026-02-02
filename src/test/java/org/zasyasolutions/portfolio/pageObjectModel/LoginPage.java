@@ -32,7 +32,7 @@ public class LoginPage extends BaseTest {
     @FindBy(xpath="//a[@href='/login']")
     private WebElement signInButton;
     
-    @FindBy(xpath="//button[normalize-space()='Logout']")
+    @FindBy(xpath="//div[@id='menu-logout']")
     private WebElement logoutButton;
 
     @BeforeMethod(dependsOnMethods = "setUp")
@@ -73,9 +73,9 @@ public class LoginPage extends BaseTest {
         reusable.waitForVisible(passwordField).sendKeys(password);
 
         reusable.waitForClickable(loginButton).click();
-
-        String message = reusable.waitForVisible(loginMessageToaster).getText();
         Thread.sleep(2000);
+        String message = reusable.waitForVisible(loginMessageToaster).getText();
+        Thread.sleep(1000);
 
         Assert.assertEquals(message, "User successfully logged in!");
         reusable.clickAlertOk();
@@ -84,13 +84,14 @@ public class LoginPage extends BaseTest {
         System.out.println("===User Logged in Successfully===");
     }
 
-	public void performLogout() {
+	public void performLogout() throws InterruptedException {
 		// TODO Auto-generated method stub
 		reusable.waitForClickable(logoutButton).click();
+		Thread.sleep(1000);
 		
 	}
 
-	public void invalidLogin() {
+	public void invalidLogin() throws InterruptedException {
 		// TODO Auto-generated method stub
 		System.out.println("===User Logging in with invalid credentials===");
 		
@@ -99,7 +100,9 @@ public class LoginPage extends BaseTest {
 		reusable.waitForVisible(usernameField).sendKeys("lokesh@zasyasolutions.com");
 		reusable.waitForVisible(passwordField).sendKeys("Invalid@Password123");
 		reusable.waitForClickable(loginButton).click();
+		Thread.sleep(1000);
 		String message = reusable.waitForVisible(loginMessageToaster).getText();	
+		outputConsole("Login Error Message: " + message);
 			Assert.assertEquals(message, "Invalid email or password.");
 			reusable.clickAlertOk();
 			
@@ -107,4 +110,6 @@ public class LoginPage extends BaseTest {
 	                "User is not navigated to Login page after invalid login attempt");
 			System.out.println("===Invalid Login Attempt Handled Successfully===");
 	}
+
+	
 }
