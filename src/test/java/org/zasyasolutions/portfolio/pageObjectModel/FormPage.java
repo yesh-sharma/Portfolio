@@ -1,13 +1,17 @@
 package org.zasyasolutions.portfolio.pageObjectModel;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Random;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.zasyasolutions.portfolio.baseTestPackage.BaseTest;
 import org.zasyasolutions.portfolio.utils.ReusableCode;
 
@@ -88,8 +92,15 @@ public class FormPage extends BaseTest {
 	
 	@FindBy(xpath= "//span[normalize-space()='Add Link']")
 	private WebElement addLinkButton;
-
 	
+	@FindBy(id="designation")
+	private WebElement designation;
+	
+	@FindBy(id="fileInput")
+	private WebElement fileInput;
+
+	public Object socialLinkURL;
+
 	public static  String skillName1;
 	public static String skillName2;
 	
@@ -613,34 +624,114 @@ public class FormPage extends BaseTest {
 		System.out.println(">> Adding Publication Link Data 4");
 		WebElement linkField = lastLinkContainer.findElement(By.xpath("//input[contains(@placeholder,'www.example.com')]"));
 		System.out.println(">> Adding Publication Link Data 4.5");
-		String textInLinkField = linkField.getText();
+		String textInLinkField = linkField.getAttribute("value");
 		System.out.println(">> Adding Publication Link Data 5");
 		
 		System.out.println(">> Text in link field: '" + textInLinkField + "'");
-		Thread.sleep(2000);
+		
 		
 		if(textInLinkField.equals("")) {
 		
 		System.out.println(">> Adding Social Link Data into the fields available");
 		}else {
-			System.out.println(">> Link field is empty, proceeding to fill it.");
+			System.out.println(">> Link field is NOT empty, proceeding to fill it.");
+			WebElement validationText = null;
+			try {
+			validationText = driver.findElement(By.xpath("//p[@class='text-red-500 my-2']"));
+			Assert.assertEquals(validationText.getText(), "You can only add up to 5 links.");
+			}catch(Exception e) {
+				System.out.println(">> No validation text found, proceeding to add new link fields.");
+			}
+			if(validationText != null && validationText.isDisplayed()) {
+				System.out.println(">> Maximum link limit reached, cannot add more links.");
+				lastLinkContainer.findElement(By.xpath(".//span[normalize-space()='Remove']")).click();
+				Thread.sleep(500);
+				WebElement addLinkBtn = reusable.waitForVisible(addLinkButton);
+				addLinkBtn.click();
+				Thread.sleep(1500);
+				
+			}else {
 			WebElement addLinkBtn = reusable.waitForVisible(addLinkButton);
 			addLinkBtn.click();
+			Thread.sleep(1500);
+			}
 		}
 		
 		List<WebElement> linkTitleInput = reusable.waitForListElement(linkInputTitle);
+		
 		linkTitleInput.get(linkTitleInput.size() - 1).sendKeys("LinkedIn");
+		
 		System.out.println(">> Adding Publication Link Data 7");
 		
 		List<WebElement> input = reusable.waitForListElement(linkInput);
 		input.get(input.size() - 1).sendKeys("https://www.linkedin.com");
 		System.out.println(">> Adding Publication Link Data 8");
+		Thread.sleep(1000);
 		
         reusable.waitForVisible(saveButton).click();
         System.out.println(">> Adding Publication Link Data 9");
+        
 	}
 	
+	public void updateSocialLinkData() throws InterruptedException {
+		
+		System.out.println(">> Updating Social Link Data");
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		List<WebElement> linkTitleInput = reusable.waitForListElement(linkInputTitle);
+		
+		WebElement lastTitleInput = linkTitleInput.get(0);
+		lastTitleInput.click();
+		js.executeScript("arguments[0].select();", lastTitleInput);
+		
+		lastTitleInput.sendKeys("Updated LinkedIn");
+		
+		List<WebElement> input = reusable.waitForListElement(linkInput);
+		WebElement lastLinkInput = input.get(0);
+		js.executeScript("arguments[0].select();", lastLinkInput);
 	
+		lastLinkInput.sendKeys("www.linkedin.com");
+		Thread.sleep(1000);
+		
+		reusable.waitForVisible(saveButton).click();
+		System.out.println(">> Updated Social Link Data");
+		
+	}
+
+	public void deleteSocialLinkData() {
+		// TODO Auto-generated method stub
+		System.out.println(">> Deleting Social Link Data");
+		List<WebElement> linksContainer = reusable.waitForListElement(linkContainer);
+		WebElement lastLinkContainer = linksContainer.get(0);
+		lastLinkContainer.findElement(By.xpath(".//span[normalize-space()='Remove']")).click();
+		System.out.println(">> Deleted Social Link Data");
+		reusable.waitForVisible(saveButton).click();
+		
+	}
+
+	public void addProfileData() {
+		// TODO Auto-generated method stub
+		String filePath = System.getProperty("user.dir") + "/src/test/resources/files/profile_picture.png";
+		
+		 try {
+	            WebElement uploadInput = reusable.waitForVisible(fileInput);
+	            uploadInput.sendKeys(filePath);
+
+	            System.out.println("[DEBUG] File upload triggered...");
+
+	         reusable.waitForInvisibleBy(By.xpath("(//div[normalize-space()='Uploading...'])[3]"));
+	         
+	            System.out.println("[DEBUG] Upload completed and SVG rendered.");
+
+	        } catch (Exception e) {
+	            System.err.println("[ERROR] Upload failed: " + e.getMessage());
+	            e.printStackTrace();
+	            throw e;
+	        }
+		 
+		reusable.waitForVisible(designation).sendKeys("Mobile App Developer");
+	}
 	
 	
 	

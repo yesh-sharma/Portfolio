@@ -13,7 +13,7 @@ import org.zasyasolutions.portfolio.pageObjectModel.ProfilePage;
 import org.zasyasolutions.portfolio.utils.ReusableCode;
 import org.zasyasolutions.portfolio.utils.RetryAnalyzer;
 
-public class SocialLinks extends BaseTest {
+public class AdditionalLinks extends BaseTest {
 
 	private LoginPage loginPage;
 	private ProfilePage profilePage;
@@ -21,8 +21,7 @@ public class SocialLinks extends BaseTest {
 	private FormPage formPage;
 	private ReusableCode reusable;
 
-	private final String section = "Social & Links";
-	
+	private final String section = "Additional & Links";
 
 	@BeforeMethod(dependsOnMethods = "setUp")
 	public void initialize() {
@@ -69,11 +68,13 @@ public class SocialLinks extends BaseTest {
 		Thread.sleep(2000);
 
 		formPage.addSocialLinkData();
-		Assert.assertEquals(crudPage.successNotificationMessage(),"Profile updated successfully", "Social Link URL not found in the section after adding.");
+		Assert.assertEquals(crudPage.successNotificationMessage(), "Profile updated successfully",
+				"Social Link URL not found in the section after adding.");
 
 	}
+
 	@Test(description = "Verify user can edit social Links link successfully", priority = 2, retryAnalyzer = RetryAnalyzer.class)
-	public void editSocialLinksLink() throws InterruptedException {	
+	public void editSocialLinksLink() throws InterruptedException {
 		loginPage.performLogin();
 		profilePage.navigateToProfile();
 
@@ -87,9 +88,11 @@ public class SocialLinks extends BaseTest {
 		Thread.sleep(2000);
 
 		formPage.updateSocialLinkData();
-		Assert.assertEquals(crudPage.successNotificationMessage(),"Profile updated successfully", "Social Link URL not found in the section after adding.");
+		Assert.assertEquals(crudPage.successNotificationMessage(), "Profile updated successfully",
+				"Social Link URL not found in the section after adding.");
 
 	}
+
 	@Test(description = "Verify user can delete social Links link successfully", priority = 3, retryAnalyzer = RetryAnalyzer.class)
 	public void deleteSocialLinksLink() throws InterruptedException {
 		loginPage.performLogin();
@@ -105,7 +108,8 @@ public class SocialLinks extends BaseTest {
 		Thread.sleep(2000);
 
 		formPage.deleteSocialLinkData();
-		Assert.assertEquals(crudPage.successNotificationMessage(),"Profile updated successfully", "Social Link URL still found in the section after deletion.");
-		
+		Assert.assertEquals(crudPage.successNotificationMessage(), "Profile updated successfully",
+				"Social Link URL still found in the section after deletion.");
+
 	}
 }
