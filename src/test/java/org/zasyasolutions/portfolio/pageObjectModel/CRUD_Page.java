@@ -1,6 +1,7 @@
 package org.zasyasolutions.portfolio.pageObjectModel;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -90,6 +91,28 @@ public class CRUD_Page extends BaseTest {
 		return driver.findElement(By.xpath(
 				"//article[normalize-space()='" + sectionName + "']/parent::*/parent::*//span[@aria-label='edit']"));
 	}
+	
+	public WebElement openVisibilityModal(String sectionName) {
+
+		return driver.findElement(By.xpath(
+				"//article[normalize-space()='" + sectionName + "']/parent::*/parent::*//span[@aria-label='eye']"));
+	}
+	
+	public WebElement noVisibilityModal(String sectionName1) {
+
+		return driver.findElement(By.xpath(
+	"//article[normalize-space()='"+sectionName1+"'] /ancestor::div[contains(@class,'bg-white')]  //button[contains(@class,'ant-btn') and contains(@class,'ant-btn-default')]  //*[name()='svg' and @viewBox='0 0 21 20']"));
+	}
+	
+	public WebElement noVisibilityOfToggleModal(String sectionName2) {
+
+		return driver.findElement(By.xpath(
+	"//article[normalize-space()='"+sectionName2+"'] /ancestor::div[@class='mb-4 flex justify-between items-center']  //button[contains(@class,'ant-btn') and contains(@class,'ant-btn-default')]  //*[name()='svg' and @viewBox='0 0 21 20']"));
+	}
+	
+	 public WebElement getPreviewProfileButton() {
+	        return driver.findElement(By.xpath("//button[contains(text(), 'Preview Profile')]"));
+	    }
 
 	private By By(WebElement editButton2) {
 		// TODO Auto-generated method stub
@@ -97,9 +120,37 @@ public class CRUD_Page extends BaseTest {
 	}
 
 	public WebElement sectionParentElement(String sectionName) {
-		return driver.findElement(By.xpath("//article[normalize-space()='" + sectionName + "']/../.."));
+	    // Strategy 1: Exact match
+	    List<WebElement> elements = driver.findElements(
+	        By.xpath("//article[normalize-space()='" + sectionName + "']/../..")
+	    );
+	    if (!elements.isEmpty()) {
+	        System.out.println("Found with exact match: " + sectionName);
+	        return elements.get(0);
+	    }
+	    
+	    // Strategy 2: Contains match
+	    elements = driver.findElements(
+	        By.xpath("//article[contains(normalize-space(), '" + sectionName + "')]/../..")
+	    );
+	    if (!elements.isEmpty()) {
+	        System.out.println("Found with contains match: " + sectionName);
+	        return elements.get(0);
+	    }
+	    
+	    // Strategy 3: Case-insensitive contains
+	    elements = driver.findElements(
+	        By.xpath("//article[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" 
+	                 + sectionName.toLowerCase() + "')]/../..")
+	    );
+	    if (!elements.isEmpty()) {
+	        System.out.println("Found with case-insensitive match: " + sectionName);
+	        return elements.get(0);
+	    }
+	    
+	    throw new org.openqa.selenium.NoSuchElementException(
+	        "Could not find section '" + sectionName + "' using any strategy"
+	    );
 	}
-
-
 
 }

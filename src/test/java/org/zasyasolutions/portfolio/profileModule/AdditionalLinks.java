@@ -53,7 +53,7 @@ public class AdditionalLinks extends BaseTest {
 	}
 
 	@Test(description = "Verify user can add social Links link successfully", priority = 1, retryAnalyzer = RetryAnalyzer.class)
-	public void addSocialLinksLink() throws InterruptedException {
+	public void addAdditionalLink() throws InterruptedException {
 
 		loginPage.performLogin();
 		profilePage.navigateToProfile();
@@ -74,7 +74,7 @@ public class AdditionalLinks extends BaseTest {
 	}
 
 	@Test(description = "Verify user can edit social Links link successfully", priority = 2, retryAnalyzer = RetryAnalyzer.class)
-	public void editSocialLinksLink() throws InterruptedException {
+	public void editAdditionalLink() throws InterruptedException {
 		loginPage.performLogin();
 		profilePage.navigateToProfile();
 
@@ -94,7 +94,7 @@ public class AdditionalLinks extends BaseTest {
 	}
 
 	@Test(description = "Verify user can delete social Links link successfully", priority = 3, retryAnalyzer = RetryAnalyzer.class)
-	public void deleteSocialLinksLink() throws InterruptedException {
+	public void deleteAdditionalLink() throws InterruptedException {
 		loginPage.performLogin();
 		profilePage.navigateToProfile();
 

@@ -58,6 +58,6 @@ public class AddProject extends BaseTest {
         profilePage.navigateToProfile();
         
         profilePage.addProject();
-        profilePage.clickSaveButton();
+
     }
 }

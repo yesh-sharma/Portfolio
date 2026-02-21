@@ -3,14 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="org.zasyasolutions.portfolio.profileModule.Profile">
+      <class name="org.zasyasolutions.portfolio.profileVisibilityTest.ProfileVisibility">
         <methods>
-          <include name="initialize"/>
-          <include name="updateProfile"/>
+          <include name="initializePageObjects"/>
+          <include name="visibilityTest"/>
           <include name="tearDown"/>
           <include name="setUp"/>
         </methods>
-      </class> <!-- org.zasyasolutions.portfolio.profileModule.Profile -->
+      </class> <!-- org.zasyasolutions.portfolio.profileVisibilityTest.ProfileVisibility -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

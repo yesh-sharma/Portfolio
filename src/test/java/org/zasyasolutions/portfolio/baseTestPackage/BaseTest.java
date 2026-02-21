@@ -20,7 +20,7 @@ public class BaseTest {
     public JavascriptExecutor js;
     public GotoPage goTo;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
         System.out.println("=== SETUP STARTED ===");
         try {
@@ -42,6 +42,8 @@ public class BaseTest {
             } else {
                 throw new IllegalArgumentException("Browser " + browser + " is not supported.");
             }
+
+            js = (JavascriptExecutor) driver;
             
             driver.manage().deleteAllCookies();
             driver.manage().window().maximize();
@@ -50,7 +52,6 @@ public class BaseTest {
             
             // Initialize WebDriverWait
             wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            js = (JavascriptExecutor) driver;
             System.out.println("✓ Driver initialized successfully");
             goTo = new GotoPage(driver);
             goTo.Goto();
@@ -68,7 +69,7 @@ public class BaseTest {
 		
 	}
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("=== TEARDOWN STARTED ===");
         if (driver != null) {

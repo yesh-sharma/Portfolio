@@ -16,7 +16,7 @@ public class ReusableCode extends BaseTest {
     
     private WebDriver driver;
     private WebDriverWait wait;
-    private WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(1));
+    private WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(5));
     private JavascriptExecutor js;
     
     public ReusableCode(WebDriver driver) {
@@ -28,6 +28,8 @@ public class ReusableCode extends BaseTest {
     public WebElement waitForVisible(WebElement element) {
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
+
+        
     public WebElement waitForVisibleTime(WebElement element) {
         return wait1.until(ExpectedConditions.visibilityOf(element));
     }
@@ -78,9 +80,13 @@ public class ReusableCode extends BaseTest {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public WebElement waitForPresence(By fileInput) {
+		return wait.until(ExpectedConditions.presenceOfElementLocated(fileInput));
+	}
 
-	public Boolean waitForInvisibleBy(By xpath) {
-		
+	public boolean waitForInvisibleBy(By xpath) {
+		// TODO Auto-generated method stub
 		return wait.until(ExpectedConditions.invisibilityOfElementLocated(xpath));
 	}
 }

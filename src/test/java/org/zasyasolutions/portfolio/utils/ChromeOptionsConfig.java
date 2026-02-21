@@ -9,7 +9,8 @@ public class ChromeOptionsConfig {
         options.setBinary(
         	    "/Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
         	);
-       // options.addArguments("--headless");
+   
+//        options.addArguments("--headless=new");
         options.addArguments("--disable-gpu");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage"); // Use this to prevent resource problems
@@ -18,6 +19,7 @@ public class ChromeOptionsConfig {
         options.addArguments("--disable-extensions"); // Disable extensions for faster startup
         options.addArguments("--disable-infobars"); // Prevent extra UI components from rendering
         options.addArguments("--disable-notifications"); // Disable notifications
+//        options.addArguments("--disable-dev-shm-usage");
         options.setAcceptInsecureCerts(true);
         options.setPageLoadStrategy(PageLoadStrategy.EAGER);
 

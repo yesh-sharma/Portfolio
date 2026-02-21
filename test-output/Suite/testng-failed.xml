@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="10" parallel="classes" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="org.zasyasolutions.portfolio.listeners.RetryListener"/>
+    <listener class-name="org.zasyasolutions.portfolio.listeners.TestListener"/>
+  </listeners>
+  <test thread-count="10" parallel="classes" name="Test(failed)">
+    <classes>
+      <class name="org.zasyasolutions.portfolio.profileModule.Skill">
+        <methods>
+          <include name="deleteSkillPosition"/>
+          <include name="addSkillPosition"/>
+          <include name="tearDown"/>
+          <include name="initializePageObjects"/>
+          <include name="updateSkillPosition" invocation-numbers="0"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- org.zasyasolutions.portfolio.profileModule.Skill -->
+      <class name="org.zasyasolutions.portfolio.profileModule.Publication">
+        <methods>
+          <include name="addAwaardPosition"/>
+          <include name="tearDown"/>
+          <include name="initializePageObjects"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- org.zasyasolutions.portfolio.profileModule.Publication -->
+      <class name="org.zasyasolutions.portfolio.profileModule.AwardAndHonors">
+        <methods>
+          <include name="updateAwardPosition"/>
+          <include name="initializePageObjects"/>
+          <include name="tearDown"/>
+          <include name="addAwaardPosition"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- org.zasyasolutions.portfolio.profileModule.AwardAndHonors -->
+      <class name="org.zasyasolutions.portfolio.profileModule.AddProject">
+        <methods>
+          <include name="verifyProfileSettingsToggle"/>
+          <include name="tearDown"/>
+          <include name="initializePageObjects"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- org.zasyasolutions.portfolio.profileModule.AddProject -->
+      <class name="org.zasyasolutions.portfolio.profileModule.Language">
+        <methods>
+          <include name="updateLanguage" invocation-numbers="1 2"/>
+          <include name="deleteLanguage"/>
+          <include name="initializePageObjects"/>
+          <include name="addLanguage"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- org.zasyasolutions.portfolio.profileModule.Language -->
+      <class name="org.zasyasolutions.portfolio.profileModule.LicenceAndCertificate">
+        <methods>
+          <include name="initializePageObjects"/>
+          <include name="updateCrtificatePosition"/>
+          <include name="tearDown"/>
+          <include name="addCertificatePosition"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- org.zasyasolutions.portfolio.profileModule.LicenceAndCertificate -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

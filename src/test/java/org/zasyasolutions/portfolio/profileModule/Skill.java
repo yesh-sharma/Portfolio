@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.zasyasolutions.portfolio.baseTestPackage.BaseTest;
+import org.zasyasolutions.portfolio.dataProvider.TestDataProvider;
 import org.zasyasolutions.portfolio.pageObjectModel.CRUD_Page;
 import org.zasyasolutions.portfolio.pageObjectModel.FormPage;
 import org.zasyasolutions.portfolio.pageObjectModel.LoginPage;
@@ -86,10 +87,11 @@ public class Skill extends BaseTest {
 	    
 	
 	    
-	    
-    @Test(description = "Updating Data to Skill Section in Profile Page",priority=2,retryAnalyzer = RetryAnalyzer.class)
-	
-	    public void updateSkillPosition() throws InterruptedException {
+	                   
+//  @Test(description = "Updating Data to Skill Section in Profile Page",priority=2,retryAnalyzer = RetryAnalyzer.class,
+//    		dataProvider="skillData",dataProviderClass=TestDataProvider.class)
+    @Test( dataProvider="skillData",dataProviderClass=TestDataProvider.class)
+	    public void updateSkillPosition(String skill) throws InterruptedException {
 	        loginPage.performLogin();
 	        profilePage.navigateToProfile();
 	        
@@ -105,7 +107,7 @@ public class Skill extends BaseTest {
 	        Thread.sleep(2000);
 	       
 	     
-	        formPage.updateTagsData("Playwrite Automation");
+	        formPage.updateTagsData(skill);
 	        Thread.sleep(1000);
 	        Assert.assertEquals(crudPage.successNotificationMessage(), "Profile updated successfully");
 	 	    System.out.println("data updated successfully");

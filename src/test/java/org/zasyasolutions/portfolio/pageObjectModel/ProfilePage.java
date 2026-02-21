@@ -145,12 +145,8 @@ public class ProfilePage extends BaseTest {
 //	           Scroll to and click Save button
 
 		reusable.scrollIntoView(saveButton);
-		reusable.waitForClickable(saveButton).click();
-
-		// Validate success toast message
-
-		Assert.assertTrue(messageToast.isDisplayed(), "Success message is not displayed");
-	}
+		clickSaveButton();
+		}
 
 	public void clickSaveButton() throws InterruptedException {
 		reusable.scrollIntoView(saveButton);
@@ -188,4 +184,6 @@ public class ProfilePage extends BaseTest {
 		}
 		Thread.sleep(1000);
 	}
+
+
 }

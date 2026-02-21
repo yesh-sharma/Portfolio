@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.zasyasolutions.portfolio.baseTestPackage.BaseTest;
+import org.zasyasolutions.portfolio.dataProvider.TestDataProvider;
 import org.zasyasolutions.portfolio.pageObjectModel.CRUD_Page;
 import org.zasyasolutions.portfolio.pageObjectModel.FormPage;
 import org.zasyasolutions.portfolio.pageObjectModel.LoginPage;
@@ -62,7 +63,7 @@ public class Language extends BaseTest {
 	   public String section = "Languages";
 	    
   @Test(description = "Adding Data to Language Section in Profile Page",priority = 1,retryAnalyzer = RetryAnalyzer.class)
-//	  @Test(priority=1)
+
 	    public void addLanguage() throws InterruptedException {
 	        loginPage.performLogin();
 	        profilePage.navigateToProfile();
@@ -84,9 +85,10 @@ public class Language extends BaseTest {
 	        System.out.println("data added successfully");
 	    }
 	       
-    @Test(description = "Updating Data to ¸ Section in Profile Page",priority=2,retryAnalyzer = RetryAnalyzer.class)
-//	 @Test (priority=2)
-	    public void updateLanguage() throws InterruptedException {
+    @Test(description = "Updating Data to ¸ Section in Profile Page",priority=2,retryAnalyzer = RetryAnalyzer.class,
+    		dataProvider="languageData",dataProviderClass=TestDataProvider.class)
+
+	    public void updateLanguage(String language) throws InterruptedException {
 	        loginPage.performLogin();
 	        profilePage.navigateToProfile();
 	        
@@ -102,14 +104,14 @@ public class Language extends BaseTest {
 	        Thread.sleep(2000);
 	       
 	     
-	        formPage.updateTagsData("punjabi");
+	        formPage.updateTagsData(language);
 	        Thread.sleep(1000);
 	        Assert.assertEquals(crudPage.successNotificationMessage(), "Profile updated successfully");
 	 	    System.out.println("data updated successfully");
 	    }
 	    
     @Test(description = "Deleting Data from Education Section in Profile Page",priority=3,retryAnalyzer = RetryAnalyzer.class,dependsOnMethods = {"addLanguage","updateLanguage"})
-	//    @Test(priority=3)
+	
 	    public void deleteLanguage() throws InterruptedException {
 	        loginPage.performLogin();
 	        profilePage.navigateToProfile();
